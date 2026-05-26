@@ -60,7 +60,7 @@ jobs:
         continue-on-error: true
         run: |
           mkdir -p resultados
-          java -jar tools/junit-platform-console-standalone-1.10.2.jar \
+          java -jar tools/junit-platform-console-standalone-1.7.0.jar \
                 --class-path "bin:lib/*" \
                 --select-class "test.LeagueControllerTest" \
                 --details tree \
