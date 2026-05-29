@@ -29,16 +29,16 @@ public class LeagueController {
      */
     public League[] sortInsertionDesc(League[] leagues) {
 
-        for(int i=1; i<leagues.length; i++){
+        for (int i = 1; i < leagues.length; i++) {
 
             League key = leagues[i];
-            int j=i-1;
+            int j = i - 1;
 
-            while(j>=0 && leagues[j].getTotalActiveGoals() < key.getTotalActiveGoals()){
-                leagues[j+1] = leagues[j];
+            while (j >= 0 && leagues[j].getTotalActiveGoals() < key.getTotalActiveGoals()) {
+                leagues[j + 1] = leagues[j];
                 j--;
             }
-            leagues[j+1]= key;
+            leagues[j + 1] = key;
         }
         return leagues;
     }
@@ -58,19 +58,19 @@ public class LeagueController {
      * @return La liga encontrada, o null si no existe
      */
     public League binarySearchByTotalActiveGoals(League[] leagues, int totalActiveGoals) {
-        int izq=0;
-        int dere=leagues.length-1;
+        int izq = 0;
+        int dere = leagues.length - 1;
 
-        while(dere>izq){
-            int mid = (izq+dere)/2;
+        while (dere > izq) {
+            int mid = (izq + dere) / 2;
             int current = leagues[mid].getTotalActiveGoals();
-            if(mid==current){
+            if (mid == current) {
                 return leagues[mid];
             }
-            if(dere>current){
-                current = mid -1;
-            }else{
-                current = mid +1;
+            if (dere > current) {
+                dere = mid - 1;
+            } else {
+                izq = mid + 1;
             }
         }
         return null;
@@ -83,8 +83,8 @@ public class LeagueController {
      */
     public void printLeagues(League[] leagues) {
 
-        for(League league: leagues){
-            System.out.println(league.getLeagueName()+"-"+league.getTotalActiveGoals());
+        for (League league : leagues) {
+            System.out.println(league.getLeagueName() + "-" + league.getTotalActiveGoals());
         }
 
     }
