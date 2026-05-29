@@ -1,3 +1,9 @@
+import java.nio.channels.Pipe.SourceChannel;
+
+import controllers.LeagueController;
+import models.League;
+import models.Player;
+import models.Team;
 
 public class App {
 
@@ -152,29 +158,37 @@ public class App {
 
         public static void main(String[] args) {
 
+                LeagueController controller = new LeagueController();
+                League[] leagues = getLeagues();
+
                 System.out.println(
                                 "Bienvenido al sistema de ligas de futbol. Por favor configure su fila en student.env y ejecute los tests automaticos para validar su implementacion.");
                 // TODO: Imprimir listado original
                 // Ejemplo:
-                // System.out.println("Listado original:");
-                // controller.printLeagues(leagues);
+                System.out.println("Listado original:");
+                controller.printLeagues(getLeagues());
 
-                // TODO: Crear una copia del arreglo y aplicar el metodo de ordenamiento de su
-                // fila
-                // Fila A: controller.sortSelectionAsc(copia)
-                // Fila B: controller.sortInsertionDesc(copia)
+                controller.sortInsertionDesc(leagues);
 
-                // TODO: Imprimir listado ordenado
-                // Ejemplo:
-                // System.out.println("Listado ordenado:");
-                // controller.printLeagues(copia);
+                System.out.println("Listado ordenado:");
+                controller.printLeagues(leagues);
 
-                // TODO: Realizar busqueda 1 e imprimir si se encontro o no
-                // Fila A: buscar 42 goles activos
-                // Fila B: buscar 67 goles activos
+                League o=controller.binarySearchByTotalActiveGoals(leagues, 67);
+                League p=controller.binarySearchByTotalActiveGoals(leagues, 40);
 
-                // TODO: Realizar busqueda 2 e imprimir si se encontro o no
-                // Fila A: buscar 55 goles activos
-                // Fila B: buscar 40 goles activos
+                if(o!=null){
+                        System.out.println("Encontrado 67");
+                }else{
+                        System.out.println("No encontrado");
+                }
+
+                if(p!=null){
+                        System.out.println("Encontrado 40");
+                }else{
+                        System.out.println("No encontrado");
+                }
+
+
+
         }
 }
